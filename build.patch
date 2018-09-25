@@ -1,0 +1,36 @@
+--- datefudge-1.22/Makefile~	2017-02-04 21:59:11.000000000 +0000
++++ datefudge-1.22/Makefile	2018-09-25 02:07:34.671765295 +0000
+@@ -1,4 +1,4 @@
+-VERSION := $(shell dpkg-parsechangelog | sed -n 's/^Version: //p')
++VERSION := 1.22
+ 
+ CC      ?= gcc
+ CFLAGS  += -Wall -Wextra -D_REENTRANT -fpic
+--- datefudge-1.22/Makefile~	2018-09-25 02:07:34.000000000 +0000
++++ datefudge-1.22/Makefile	2018-09-25 02:32:00.757744883 +0000
+@@ -8,7 +8,7 @@
+ endif
+ 
+ prefix	= /usr
+-libdir 	= $(prefix)/lib
++libdir 	= $(prefix)/lib64
+ ifneq (,$(libarch))
+ # The `*-*' pattern matches to both hurd-i386 and e.g. i386-linux-gnu
+ marchpt = /*-*
+@@ -19,12 +19,12 @@
+ all compile: datefudge datefudge.so datefudge.1
+ 
+ install: datefudge datefudge.so datefudge.1
+-	install -d $(DESTDIR)$(libdir)/$(libarch)/datefudge
+-	$(INSTALL_PROGRAM) -o root -g root -m 644 datefudge.so $(DESTDIR)$(libdir)/$(libarch)/datefudge/datefudge.so
++	install -d $(DESTDIR)$(libdir)/datefudge
++	$(INSTALL_PROGRAM) -m 644 datefudge.so $(DESTDIR)$(libdir)/datefudge/datefudge.so
+ 	install -d $(DESTDIR)$(bindir)
+-	$(INSTALL_PROGRAM) -o root -g root -m 755 datefudge $(DESTDIR)$(bindir)
++	$(INSTALL_PROGRAM) -m 755 datefudge $(DESTDIR)$(bindir)
+ 	install -d $(DESTDIR)$(mandir)/man1
+-	install -o root -g root -m 644 datefudge.1 $(DESTDIR)$(mandir)/man1
++	install -m 644 datefudge.1 $(DESTDIR)$(mandir)/man1
+ 
+ datefudge: datefudge.sh
+ datefudge.1: datefudge.man
