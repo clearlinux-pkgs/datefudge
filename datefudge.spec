@@ -4,7 +4,7 @@
 #
 Name     : datefudge
 Version  : 1.22
-Release  : 1
+Release  : 2
 URL      : http://http.debian.net/debian/pool/main/d/datefudge/datefudge_1.22.tar.xz
 Source0  : http://http.debian.net/debian/pool/main/d/datefudge/datefudge_1.22.tar.xz
 Summary  : No detailed summary available
