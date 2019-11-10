@@ -1,0 +1,40 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Sun, 10 Nov 2019 12:29:10 -0800
+Subject: [PATCH] Fix build
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ Makefile | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 563e928..4fce8c6 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,4 +1,4 @@
+-VERSION := $(shell dpkg-parsechangelog | sed -n 's/^Version: //p')
++VERSION := $(shell sed -n '1s/.*(\(..*\)).*/\1/p' debian/changelog)
+ 
+ CC      ?= gcc
+ CFLAGS  += -Wall -Wextra -D_REENTRANT -fpic
+@@ -8,7 +8,7 @@ ifeq (,$(INSTALL_PROGRAM))
+ endif
+ 
+ prefix	= /usr
+-libdir 	= $(prefix)/lib
++libdir 	= $(prefix)/lib64
+ ifneq (,$(libarch))
+ # The `*-*' pattern matches to both hurd-i386 and e.g. i386-linux-gnu
+ marchpt = /*-*
+@@ -19,8 +19,8 @@ mandir	= $(prefix)/share/man
+ all compile: datefudge datefudge.so datefudge.1
+ 
+ install: datefudge datefudge.so datefudge.1
+-	install -d $(DESTDIR)$(libdir)/$(libarch)/datefudge
+-	$(INSTALL_PROGRAM) -m 644 datefudge.so $(DESTDIR)$(libdir)/$(libarch)/datefudge/datefudge.so
++	install -d $(DESTDIR)$(libdir)/datefudge
++	$(INSTALL_PROGRAM) -m 644 datefudge.so $(DESTDIR)$(libdir)/datefudge/datefudge.so
+ 	install -d $(DESTDIR)$(bindir)
+ 	$(INSTALL_PROGRAM) -m 755 datefudge $(DESTDIR)$(bindir)
+ 	install -d $(DESTDIR)$(mandir)/man1

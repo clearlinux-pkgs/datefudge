@@ -1,3 +1,21 @@
+datefudge (1.23) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org
+
+  [ Robert Luberda ]
+  * Makefile: No longer require root privileges for installation;
+    set `Rules-Requires-Root' to `no' in debian/control.
+  * Build with debhelper v12.
+  * datefudge.sh: introduce '--add-ld-preload|-l arg' option to prepend
+    given arg to LD_LPRELOAD variable, what might be useful for Address
+    Sanitizer and other santizers (closes: #873577).
+  * datefudge.man: document the above option.
+  * Add simple tests for autopkgtest.
+  * Standards-Version: 4.4.0.
+
+ -- Robert Luberda <robert@debian.org>  Fri, 02 Aug 2019 20:09:51 +0200
+
 datefudge (1.22) unstable; urgency=medium
 
   * datefudge.c: Apply the following fixes from Thorsten Glaser
