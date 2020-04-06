@@ -4,7 +4,7 @@
 #
 Name     : datefudge
 Version  : 1.23
-Release  : 3
+Release  : 4
 URL      : https://mirrors.kernel.org/debian/pool/main/d/datefudge/datefudge_1.23.tar.xz
 Source0  : https://mirrors.kernel.org/debian/pool/main/d/datefudge/datefudge_1.23.tar.xz
 Summary  : No detailed summary available
@@ -15,6 +15,7 @@ Requires: datefudge-lib = %{version}-%{release}
 Requires: datefudge-license = %{version}-%{release}
 Requires: datefudge-man = %{version}-%{release}
 Patch1: 0001-Fix-build.patch
+Patch2: Fix-gettimeofday-error.patch
 
 %description
 All files in this repository / Debian archive are (c) 2002-2003
@@ -59,26 +60,27 @@ man components for the datefudge package.
 %setup -q -n datefudge-1.23
 cd %{_builddir}/datefudge-1.23
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573418270
+export SOURCE_DATE_EPOCH=1586198395
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1573418270
+export SOURCE_DATE_EPOCH=1586198395
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/datefudge
 cp %{_builddir}/datefudge-1.23/COPYING %{buildroot}/usr/share/package-licenses/datefudge/dfac199a7539a404407098a2541b9482279f690d
