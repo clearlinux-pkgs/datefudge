@@ -1,3 +1,23 @@
+datefudge (1.26) unstable; urgency=low
+
+  * Fix autpokgtest case introduced recently for #946776 so that it does not
+    depend on time zone.
+
+ -- Robert Luberda <robert@debian.org>  Sun, 14 Jan 2024 11:16:31 +0100
+
+datefudge (1.25) unstable; urgency=low
+
+  * Provide 64-bit versions of time functions on 32-bit architectures
+    (closes: #1028587, LP: #2002803).
+  * Cleanup source code, and reformat it with clang-format.
+  * In --static mode, set sub-seconds part to 0 (closes: #946776).
+  * Mention in man page and README file existence of libfaketime package,
+    that might be considered for more advanced functionalities than the
+    ones provided by datefudge.
+  * Standards-Version: 4.6.2 (no changes).
+
+ -- Robert Luberda <robert@debian.org>  Sat, 13 Jan 2024 12:52:30 +0100
+
 datefudge (1.24) unstable; urgency=medium
 
   [ Debian Janitor ]
